@@ -1,6 +1,6 @@
 import React from "react"
 
-class HighlightOverview extends React.Component {
+class Highlight extends React.Component {
   constructor(){
     super()
   }
@@ -12,4 +12,4 @@ class HighlightOverview extends React.Component {
   }
 }
 
-export default HighlightOverview
+export default Highlight

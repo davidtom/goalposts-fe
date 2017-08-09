@@ -1,28 +1,47 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import HighlightOverview from "./components/HighlightOverview"
+import HighlightPage from "./components/HighlightPage"
+import Filter from "./components/Filter"
+import HighlightGroup from "./components/HighlightGroup"
+import Highlight from "./components/Highlight"
+
 
 class App extends Component {
+
+  constructor(){
+    super()
+
+    this.state = {
+      currentPage: "highlights",
+      goals: [],
+      filters: {
+        text: "",
+      }
+    }
+
+  }
+
+  updateTextFilter = (text) => {
+    this.setState({
+      filters: {
+        text: text
+      }
+    })
+  }
 
   getHighlights(){
     return fetch("http://localhost:3000/api/v1/highlights")
     .then(resp => resp.json())
+    .then(goals => this.setState({goals: goals}))
+  }
+
+  componentWillMount(){
+    this.getHighlights()
   }
 
   render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          <HighlightOverview />
-        </p>
-      </div>
-    );
+    if (this.state.currentPage === "highlights"){return (<HighlightPage />)}
   }
+
 }
 
 export default App;
