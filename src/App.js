@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import HighlightPage from "./components/HighlightPage"
-import Filter from "./components/Filter"
-import HighlightGroup from "./components/HighlightGroup"
-import Highlight from "./components/Highlight"
+import Nav from "./components/Nav";
+import HighlightSearchPage from "./components/HighlightSearchPage";
+// import Filter from "./components/Filter";
+// import HighlightGroup from "./components/HighlightGroup";
+// import Highlight from "./components/Highlight";
 
 
 class App extends Component {
@@ -11,35 +12,38 @@ class App extends Component {
     super()
 
     this.state = {
-      currentPage: "highlights",
-      goals: [],
-      filters: {
-        text: "",
-      }
+      currentPage: "highlightSearch",
+      highlights: [],
     }
 
-  }
-
-  updateTextFilter = (text) => {
-    this.setState({
-      filters: {
-        text: text
-      }
-    })
   }
 
   getHighlights(){
     return fetch("http://localhost:3000/api/v1/highlights")
     .then(resp => resp.json())
-    .then(goals => this.setState({goals: goals}))
+    .then(highlights => this.setState({highlights}))
   }
 
-  componentWillMount(){
+  componentDidMount(){
     this.getHighlights()
   }
 
+  selectPage(){
+    if (this.state.currentPage === "highlightSearch"){
+      return (<HighlightSearchPage highlights={this.state.highlights}
+              />)
+    } else {
+      return "something went wrong"
+    }
+  }
+
   render() {
-    if (this.state.currentPage === "highlights"){return (<HighlightPage />)}
+    return (
+      <div>
+        < Nav />
+        {this.selectPage()}
+      </div>
+    )
   }
 
 }

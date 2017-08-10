@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 
 class Filter extends React.Component{
   constructor(){
@@ -6,7 +6,7 @@ class Filter extends React.Component{
   }
 
   changeTextFilter = (event) => {
-    this.props.textFilter(event.target.value)
+    this.props.updateTextFilter(event.target.value)
   }
 
   render(){
@@ -19,4 +19,4 @@ class Filter extends React.Component{
   }
 }
 
-export default Filter
+export default Filter;

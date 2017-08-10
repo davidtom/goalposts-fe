@@ -1,5 +1,5 @@
-import React from "react"
-import Highlight from "./components/Highlight"
+import React from "react";
+import Highlight from "./Highlight";
 
 
 class HighlightGroup extends React.Component{
@@ -15,4 +15,4 @@ class HighlightGroup extends React.Component{
   }
 }
 
-export default HighlightGroup
+export default HighlightGroup;
