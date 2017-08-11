@@ -1,11 +1,12 @@
 import React from "react";
+import { Container, Segment, Header, Button, List } from 'semantic-ui-react'
 
 class Highlight extends React.Component {
   constructor(){
     super()
 
     this.state = {
-      displayVideo: false,
+      displayDetails: false,
     }
   }
 
@@ -13,48 +14,26 @@ class Highlight extends React.Component {
     return {__html: this.props.highlight.media_embed}
   }
 
-  toggleDisplayVideo = () => {
+  toggleDisplayDetails = () => {
     this.setState({
-      displayVideo: !this.state.displayVideo
+      displayDetails: !this.state.displayDetails
     })
   }
 
   render(){
     return (
-      <div class="ui card">
-        <div class="content">
-          <div class="header">Project Timeline</div>
-        </div>
-        <div class="content">
-          <h4 class="ui sub header">Activity</h4>
-          <div class="ui small feed">
-            <div class="event">
-              <div class="content">
-                <div class="summary">
-                  <a>Elliot Fu</a> added <a>Jenny Hess</a> to the project
-                </div>
-              </div>
-            </div>
-            <div class="event">
-              <div class="content">
-                <div class="summary">
-                  <a>Stevie Feliciano</a> was added as an <a>Administrator</a>
-                </div>
-              </div>
-            </div>
-            <div class="event">
-              <div class="content">
-                <div class="summary">
-                  <a>Helen Troy</a> added two pictures
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="extra content">
-          <button class="ui button">Join Project</button>
-        </div>
-      </div>
+      <Container textAlign="center">
+        <Segment>
+          <Header size="large">{this.props.highlight.title}</Header>
+          <Button size="medium" onClick={this.toggleDisplayDetails}>Details</Button>
+          {this.state.displayDetails && <div>
+            <div dangerouslySetInnerHTML={this.embedVideo()}/>
+            <Button size="huge"> Source Media </Button>
+            <Button size='huge'> Reddit Post </Button>
+          </div>}
+        </Segment>
+        <br/>
+      </Container>
     )
   }
 }
@@ -63,7 +42,7 @@ export default Highlight;
 
 
 // <div onClick={this.toggleDisplayVideo}>
-//   <h3>{this.props.highlight.title}</h3>
+//   <h3></h3>
 //   {this.state.displayVideo && <div dangerouslySetInnerHTML={this.embedVideo()}/>}
 //   <div>
 //     <p><b>Source media:</b> {this.props.highlight.url}</p>

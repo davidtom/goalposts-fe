@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Nav from "./components/Nav";
 import HighlightSearchPage from "./components/HighlightSearchPage";
+import HighlightDisplayPage from "./components/HighlightDisplayPage";
+import 'semantic-ui-css/semantic.min.css';
 // import Filter from "./components/Filter";
 // import HighlightGroup from "./components/HighlightGroup";
 // import Highlight from "./components/Highlight";
@@ -12,7 +14,7 @@ class App extends Component {
     super()
 
     this.state = {
-      currentPage: "highlightSearch",
+      currentPage: "highlightDisplay",
       highlights: [],
     }
 
@@ -29,9 +31,10 @@ class App extends Component {
   }
 
   selectPage(){
-    if (this.state.currentPage === "highlightSearch"){
-      return (<HighlightSearchPage highlights={this.state.highlights}
-              />)
+    if (this.state.currentPage === "highlightDisplay") {
+      return (<HighlightDisplayPage highlights={this.state.highlights}/>)
+    } else if (this.state.currentPage === "highlightSearch") {
+      return (<HighlightSearchPage highlights={this.state.highlights}/>)
     } else {
       return "something went wrong"
     }
