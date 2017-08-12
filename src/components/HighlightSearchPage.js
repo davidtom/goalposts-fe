@@ -23,12 +23,13 @@ class HighlightSearchPage extends React.Component{
     })
   }
 
+  // TODO: Figure out best place/structure of props and state
   filterByTitle(highlights){
     return highlights.filter(highlight => highlight.title.toLowerCase().indexOf(this.state.filters.text) !== -1)
   }
 
   filteredHighlights(){
-    const filtered_highlights = this.filterByTitle(this.props.highlights)
+    const filtered_highlights = this.filterByTitle(this.props.data.highlights)
     return filtered_highlights.map((highlight, index) => <Highlight highlight={highlight} index={index}/>)
   }
 

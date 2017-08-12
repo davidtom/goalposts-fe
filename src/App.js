@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Nav from "./components/Nav";
+import SiteHeader from "./components/SiteHeader";
+import NavBar from "./components/NavBar";
 import HighlightSearchPage from "./components/HighlightSearchPage";
 import HighlightDisplayPage from "./components/HighlightDisplayPage";
-import 'semantic-ui-css/semantic.min.css';
-// import Filter from "./components/Filter";
-// import HighlightGroup from "./components/HighlightGroup";
-// import Highlight from "./components/Highlight";
+import {BrowserRouter as Router, Route, NavLink} from "react-router-dom"
+
 
 
 class App extends Component {
@@ -14,7 +13,6 @@ class App extends Component {
     super()
 
     this.state = {
-      currentPage: "highlightDisplay",
       highlights: [],
     }
 
@@ -30,22 +28,18 @@ class App extends Component {
     this.getHighlights()
   }
 
-  selectPage(){
-    if (this.state.currentPage === "highlightDisplay") {
-      return (<HighlightDisplayPage highlights={this.state.highlights}/>)
-    } else if (this.state.currentPage === "highlightSearch") {
-      return (<HighlightSearchPage highlights={this.state.highlights}/>)
-    } else {
-      return "something went wrong"
-    }
-  }
-
   render() {
+
+    const highlights = {highlights: this.state.highlights}
+
     return (
-      <div>
-        < Nav />
-        {this.selectPage()}
-      </div>
+      <Router>
+        <div>
+          < NavBar />
+          < Route exact path="/" render={(props)=> (<HighlightDisplayPage {...props} data={highlights}/>)} />
+          < Route exact path="/search" render={(props)=> (<HighlightSearchPage {...props} data={highlights}/>)} />
+        </div>
+      </Router>
     )
   }
 
