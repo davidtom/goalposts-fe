@@ -1,10 +1,10 @@
 import React from "react";
 import Filter from "./Filter";
-import HighlightGroup from "./HighlightGroup";
 import Highlight from "./Highlight";
+import { Container, Header } from 'semantic-ui-react'
 
 
-class HighlightDisplayPage extends React.Component{
+class SearchPage extends React.Component{
   constructor(){
     super()
 
@@ -23,9 +23,7 @@ class HighlightDisplayPage extends React.Component{
     })
   }
 
-  // TODO: I still think highlights should be a part of state!
-  // TODO: add prop types!
-  // TODO: highlight group should be called highlight collection (more of a norm - per Es)
+  // TODO: Figure out best place/structure of props and state
   // TODO: display page and search page are not DRY! fix this - the component
   //        above them should probably have state, these just display the props in one way or another
   filterByTitle(highlights){
@@ -39,12 +37,13 @@ class HighlightDisplayPage extends React.Component{
 
   render(){
     return(
-      <div className="">
-        <h1>Highlights</h1>
+      <Container textAlign="center">
+        <Header as="h1">Search Highlights</Header>
+        <Filter filters={this.state.filters} updateTextFilter={this.updateTextFilter}/>
         {this.filteredHighlights()}
-      </div>
+      </Container>
     )
   }
 }
 
-export default HighlightDisplayPage;
+export default SearchPage;

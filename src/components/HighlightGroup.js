@@ -1,5 +1,6 @@
 import React from "react";
 import Highlight from "./Highlight";
+import {Segment, Header} from 'semantic-ui-react'
 
 
 class HighlightGroup extends React.Component{
@@ -7,10 +8,16 @@ class HighlightGroup extends React.Component{
     super()
   }
 
+highlightCards(){
+  return this.props.highlights.values.map((highlight, index) => < Highlight highlight={highlight} key={index}/>)
+}
+
   render(){
     return(
-      <div>
-      </div>
+      <Segment>
+        <Header size="large" block>{this.props.highlights.key}</Header>
+        {this.highlightCards()}
+      </Segment>
     )
   }
 }

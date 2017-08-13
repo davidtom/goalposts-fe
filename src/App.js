@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import SiteHeader from "./components/SiteHeader";
+import {SiteHeader} from "./components/Headers";
 import NavBar from "./components/NavBar";
-import HighlightSearchPage from "./components/HighlightSearchPage";
-import HighlightDisplayPage from "./components/HighlightDisplayPage";
-import {BrowserRouter as Router, Route, NavLink} from "react-router-dom"
+import IndexPage from "./components/IndexPage";
+import SearchPage from "./components/SearchPage";
+import AboutPage from "./components/AboutPage";
+import {BrowserRouter as Router, Route} from "react-router-dom"
 
 
 
@@ -35,9 +36,11 @@ class App extends Component {
     return (
       <Router>
         <div>
+          < SiteHeader />
           < NavBar />
-          < Route exact path="/" render={(props)=> (<HighlightDisplayPage {...props} data={highlights}/>)} />
-          < Route exact path="/search" render={(props)=> (<HighlightSearchPage {...props} data={highlights}/>)} />
+          < Route exact path="/" render={(props)=> (<IndexPage {...props} data={highlights}/>)} />
+          < Route exact path="/search" render={(props)=> (<SearchPage {...props} data={highlights}/>)} />
+          < Route exact path="/about" render={(props)=> (<AboutPage {...props} data={highlights}/>)} />
         </div>
       </Router>
     )
