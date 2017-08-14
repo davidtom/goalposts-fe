@@ -14,8 +14,8 @@ class App extends Component {
 
     return (
         <div>
-          < SiteHeader />
-          < NavBar />
+          < Route path="/" component={SiteHeader} />
+          < Route path="/" component={NavBar} />
           < Route exact path="/" component={IndexPage} />
           < Route exact path="/search" component={SearchPage} />
           < Route exact path="/about"  component={AboutPage}/>

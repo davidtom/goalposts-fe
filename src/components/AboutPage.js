@@ -1,4 +1,6 @@
 import React from "react";
+import {PageHeader} from "./PageAssets";
+import {Container} from 'semantic-ui-react'
 
 
 class AboutPage extends React.Component{
@@ -8,8 +10,9 @@ class AboutPage extends React.Component{
 
   render(){
     return(
-      <div className="">
-      </div>
+      <Container textAlign="center">
+        <PageHeader title="About"/>
+      </Container>
     )
   }
 }

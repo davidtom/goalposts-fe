@@ -1,5 +1,6 @@
 import React from "react";
 import Highlight from "./Highlight";
+import {SectionHeader} from "./PageAssets";
 import {Segment, Header} from 'semantic-ui-react'
 
 
@@ -14,8 +15,8 @@ highlightCards(){
 
   render(){
     return(
-      <Segment>
-        <Header size="large" block>{this.props.highlights.key}</Header>
+      <Segment padded>
+        <SectionHeader title={this.props.highlights.key} />
         {this.highlightCards()}
       </Segment>
     )

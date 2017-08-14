@@ -1,7 +1,9 @@
 import React from "react";
 import Filter from "./Filter";
-import Highlight from "./Highlight";
-import { Container, Header } from 'semantic-ui-react'
+import HighlightCollection from "./HighlightCollection";
+
+import {PageHeader, textLoader} from "./PageAssets";
+import { Container, Message } from 'semantic-ui-react'
 
 
 class SearchPage extends React.Component{
@@ -9,6 +11,7 @@ class SearchPage extends React.Component{
     super()
 
     this.state = {
+      highlights: [],
       filters: {
         text: "",
       }
@@ -23,24 +26,28 @@ class SearchPage extends React.Component{
     })
   }
 
-  // TODO: Figure out best place/structure of props and state
-  // TODO: display page and search page are not DRY! fix this - the component
-  //        above them should probably have state, these just display the props in one way or another
-  filterByTitle(highlights){
-    return highlights.filter(highlight => highlight.title.toLowerCase().indexOf(this.state.filters.text) !== -1)
+  submitSearch = () => {
+    let url = `http://localhost:3000/api/v1/highlights/search?title=${this.state.filters.text}`
+
+    fetch(url)
+    .then(resp => resp.json())
+    .then(highlights => this.setState({highlights}))
   }
 
-  filteredHighlights(){
-    const filtered_highlights = this.filterByTitle(this.props.data.highlights)
-    return filtered_highlights.map((highlight, index) => <Highlight highlight={highlight} key={index}/>)
-  }
+  searchResultMessage = () => (
+    <Message info>
+      <Message.Header>Search Complete</Message.Header>
+      <p><b>{this.state.highlights.length}</b> results found.</p>
+    </Message>
+  )
 
   render(){
     return(
       <Container textAlign="center">
-        <Header as="h1">Search Highlights</Header>
-        <Filter filters={this.state.filters} updateTextFilter={this.updateTextFilter}/>
-        {this.filteredHighlights()}
+        <PageHeader title="Search Highlights"/>
+        <Filter filters={this.state.filters} updateTextFilter={this.updateTextFilter} submitSearch={this.submitSearch}/>
+        {!!this.state.highlights.length && this.searchResultMessage()}
+        <HighlightCollection highlights = {this.state.highlights} />
       </Container>
     )
   }
