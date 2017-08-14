@@ -1,7 +1,7 @@
 import React from "react";
 import HighlightCollection from "./HighlightCollection";
 import {PageHeader, textLoader, contentEndAlert} from "./PageAssets";
-import {Container, Header} from 'semantic-ui-react'
+import {Container} from 'semantic-ui-react'
 import InfiniteScroll from "react-infinite-scroller"
 
 class IndexPage extends React.Component{
@@ -47,7 +47,7 @@ class IndexPage extends React.Component{
 
     return(
       <Container textAlign="center">
-        <PageHeader title="Highlights"/>
+        <PageHeader title="View Highlights"/>
         <InfiniteScroll
           pageStart={0}
           loadMore={this.loadHighlights}

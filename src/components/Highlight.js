@@ -37,7 +37,7 @@ class Highlight extends React.Component {
   render(){
     return (
       <div>
-        <Header size="medium">{this.props.highlight.title}</Header>
+        <Header size="large">{this.props.highlight.title}</Header>
         {this.embedVideo()}
         <Divider hidden/>
         <Button size="medium" onClick={this.toggleDisplayDetails}> <Icon name={this.detailButtonIcon()} /> {this.detailButtonText()} </Button>

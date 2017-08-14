@@ -4,9 +4,6 @@ import HighlightGroup from "./HighlightGroup";
 
 
 class HighlightCollection extends React.Component{
-  constructor(){
-    super()
-  }
 
   groupByArray(xs, key) {
     // from stackoverflow: https://stackoverflow.com/questions/14446511/what-is-the-most-efficient-method-to-groupby-on-a-javascript-array-of-objects

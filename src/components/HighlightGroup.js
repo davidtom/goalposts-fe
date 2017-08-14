@@ -1,13 +1,21 @@
 import React from "react";
 import Highlight from "./Highlight";
 import {SectionHeader} from "./PageAssets";
-import {Segment, Header} from 'semantic-ui-react'
+import {Segment} from 'semantic-ui-react'
 
 
 class HighlightGroup extends React.Component{
   constructor(){
     super()
+
+    this.state = {
+      display: true
+    }
   }
+
+toggleDisplay = () => {
+  this.setState({display: !this.state.display})
+}
 
 highlightCards(){
   return this.props.highlights.values.map((highlight, index) => < Highlight highlight={highlight} key={index}/>)
@@ -16,8 +24,8 @@ highlightCards(){
   render(){
     return(
       <Segment padded>
-        <SectionHeader title={this.props.highlights.key} />
-        {this.highlightCards()}
+        <SectionHeader title={this.props.highlights.key} onClick={this.toggleDisplay} />
+        {this.state.display && this.highlightCards()}
       </Segment>
     )
   }

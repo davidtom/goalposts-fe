@@ -1,21 +1,20 @@
 import React from "react"
 import { Header, Image, Loader, Segment } from 'semantic-ui-react'
 
+const SiteLogo = () => (
+  <Image shape='rounded' height="70" verticalAlign="middle" spaced src='./soccer-silhouette-image.png' />
+)
+
 const SiteHeader = () => (
-  <div className="ui container fluid left aligned">
-  <Header as='h1'>
-    <Image shape='rounded' verticalAlign="middle" src='./soccer-silhouette-image.png' />
-    {' '}GoalPosts
-  </Header>
-  </div>
+  <Header size="huge">GoalPosts</Header>
 )
 
-const PageHeader = ({title}) => (
-  <Header size="huge">{title}</Header>
+const PageHeader = (props) => (
+  <Header id="page-header">{props.title}</Header>
 )
 
-const SectionHeader = ({title}) => (
-  <Header size="large" block>{title}</Header>
+const SectionHeader = (props) => (
+  <Header id="section-header" size="huge" block onClick={props.onClick}>{props.title}</Header>
 )
 
 const textLoader = () => (
@@ -26,6 +25,7 @@ const contentEndAlert = () => (
    <Segment color='red' textAlign='center'>No Additional Content to Load</Segment>
 )
 
+export {SiteLogo}
 export {SiteHeader}
 export {PageHeader}
 export {SectionHeader}

@@ -1,20 +1,13 @@
 import React from "react"
 import { NavLink } from 'react-router-dom';
-import { Input, Menu} from 'semantic-ui-react'
+import {SiteLogo, SiteHeader} from "./PageAssets";
 
 const NavBar = () => {
 
-  const link = {
-    width: '100px',
-    padding: '12px',
-    margin: '0 6px 6px',
-    background: 'blue',
-    textDecoration: 'none',
-    color: 'white',
-  }
-
   return (
-    <div className="navbar ui pointing menu">
+    <div id="top-banner" className="navbar ui menu pointing secondary fluid left aligned">
+      <SiteLogo />
+      <SiteHeader />
       <NavLink to="/" exact className="item">
         Home
       </NavLink>

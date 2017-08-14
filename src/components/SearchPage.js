@@ -2,7 +2,7 @@ import React from "react";
 import Filter from "./Filter";
 import HighlightCollection from "./HighlightCollection";
 
-import {PageHeader, textLoader} from "./PageAssets";
+import {PageHeader} from "./PageAssets";
 import { Container, Message } from 'semantic-ui-react'
 
 
@@ -12,6 +12,8 @@ class SearchPage extends React.Component{
 
     this.state = {
       highlights: [],
+      searchTerm: null,
+      searchComplete: false,
       filters: {
         text: "",
       }
@@ -27,16 +29,23 @@ class SearchPage extends React.Component{
   }
 
   submitSearch = () => {
+
     let url = `http://localhost:3000/api/v1/highlights/search?title=${this.state.filters.text}`
 
     fetch(url)
     .then(resp => resp.json())
-    .then(highlights => this.setState({highlights}))
+    .then(highlights =>
+      this.setState(
+        {highlights,
+        searchTerm: this.state.filters.text,
+        searchComplete: true}
+      )
+    )
   }
 
   searchResultMessage = () => (
     <Message info>
-      <Message.Header>Search Complete</Message.Header>
+      <Message.Header>Search for "{this.state.searchTerm}" completed.</Message.Header>
       <p><b>{this.state.highlights.length}</b> results found.</p>
     </Message>
   )
@@ -46,7 +55,7 @@ class SearchPage extends React.Component{
       <Container textAlign="center">
         <PageHeader title="Search Highlights"/>
         <Filter filters={this.state.filters} updateTextFilter={this.updateTextFilter} submitSearch={this.submitSearch}/>
-        {!!this.state.highlights.length && this.searchResultMessage()}
+        {!!this.state.searchComplete && this.searchResultMessage()}
         <HighlightCollection highlights = {this.state.highlights} />
       </Container>
     )

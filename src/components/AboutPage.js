@@ -4,14 +4,11 @@ import {Container} from 'semantic-ui-react'
 
 
 class AboutPage extends React.Component{
-  constructor(){
-    super()
-  }
 
   render(){
     return(
       <Container textAlign="center">
-        <PageHeader title="About"/>
+        <PageHeader title="About GoalPosts"/>
       </Container>
     )
   }

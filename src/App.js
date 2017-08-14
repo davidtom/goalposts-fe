@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
-import {SiteHeader} from "./components/PageAssets";
 import NavBar from "./components/NavBar";
 import IndexPage from "./components/IndexPage";
 import SearchPage from "./components/SearchPage";
 import AboutPage from "./components/AboutPage";
 import {Route} from "react-router-dom"
-
-
 
 class App extends Component {
 
@@ -14,7 +11,6 @@ class App extends Component {
 
     return (
         <div>
-          < Route path="/" component={SiteHeader} />
           < Route path="/" component={NavBar} />
           < Route exact path="/" component={IndexPage} />
           < Route exact path="/search" component={SearchPage} />
