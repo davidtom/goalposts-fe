@@ -5,6 +5,7 @@ import {PageHeader} from "./PageAssets";
 import { Container, Message } from 'semantic-ui-react';
 import {sortTitleAscending, sortTitleDescending} from './sortFunctions';
 
+const sortOptions = [null, "asc", "desc"]
 
 class SearchPage extends React.Component{
   constructor(){
@@ -24,6 +25,7 @@ class SearchPage extends React.Component{
   updateTextFilter = (text) => {
     this.setState({
       filters: {
+        ...this.state.filters,
         text: text
       }
     })
@@ -44,6 +46,20 @@ class SearchPage extends React.Component{
     )
   }
 
+  cycleTitleSort = () => {
+    let index = sortOptions.indexOf(this.state.filters.sortTitle)
+    return sortOptions[(index+1)%3]
+  }
+
+  updateTitleSort = () => {
+    this.setState({
+      filters: {
+        ...this.state.filters,
+        sortTitle: this.cycleTitleSort(),
+      }
+    })
+  }
+
   searchResultMessage = () => (
     <Message info>
       <Message.Header>Search for "{this.state.searchTerm}" completed.</Message.Header>
@@ -51,15 +67,28 @@ class SearchPage extends React.Component{
     </Message>
   )
 
-  // TODO: set up button and logic to filter results by name (probably means highlights shouldnt be shown in collection/group)
+  searchResults = () => {
+    if (this.state.filters.sortTitle === "asc"){
+      return sortTitleAscending(this.state.highlights)
+    } else if (this.state.filters.sortTitle === "desc") {
+      return sortTitleDescending(this.state.highlights)
+    } else {
+      console.log(this.state.highlights)
+      return this.state.highlights
+    }
+  }
+
   render(){
-    // console.log(sortTitleDescending(this.state.highlights))
     return(
       <Container textAlign="center">
         <PageHeader title="Search Highlights"/>
-        <Filter filters={this.state.filters} updateTextFilter={this.updateTextFilter} submitSearch={this.submitSearch}/>
+        <Filter filters={this.state.filters}
+                updateTextFilter={this.updateTextFilter}
+                submitSearch={this.submitSearch}
+                toggleTitleSort={this.updateTitleSort}
+                />
         {!!this.state.searchComplete && this.searchResultMessage()}
-        <HighlightCollection highlights = {this.state.highlights} />
+        <HighlightCollection highlights = {this.searchResults()}/>
       </Container>
     )
   }
