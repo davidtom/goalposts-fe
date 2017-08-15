@@ -8,6 +8,7 @@
     "react-datepicker": "^0.53.0",
     "react-dom": "^15.6.1",
     "react-infinite-scroller": "^1.0.15",
+    "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.10",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-react": "^0.71.4"
