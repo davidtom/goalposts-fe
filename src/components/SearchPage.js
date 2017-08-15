@@ -1,9 +1,9 @@
 import React from "react";
 import Filter from "./Filter";
 import HighlightCollection from "./HighlightCollection";
-
 import {PageHeader} from "./PageAssets";
-import { Container, Message } from 'semantic-ui-react'
+import { Container, Message } from 'semantic-ui-react';
+import {sortTitleAscending, sortTitleDescending} from './sortFunctions';
 
 
 class SearchPage extends React.Component{
@@ -16,6 +16,7 @@ class SearchPage extends React.Component{
       searchComplete: false,
       filters: {
         text: "",
+        sortTitle: null
       }
     }
   }
@@ -50,7 +51,9 @@ class SearchPage extends React.Component{
     </Message>
   )
 
+  // TODO: set up button and logic to filter results by name (probably means highlights shouldnt be shown in collection/group)
   render(){
+    // console.log(sortTitleDescending(this.state.highlights))
     return(
       <Container textAlign="center">
         <PageHeader title="Search Highlights"/>
