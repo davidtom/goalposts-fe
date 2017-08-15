@@ -1,6 +1,6 @@
 import React from "react";
 import HighlightCollection from "./HighlightCollection";
-import {PageHeader, textLoader, contentEndAlert} from "./PageAssets";
+import {apiURL, PageHeader, textLoader, contentEndAlert} from "./PageAssets";
 import {Container} from 'semantic-ui-react'
 import InfiniteScroll from "react-infinite-scroller"
 
@@ -18,7 +18,7 @@ class IndexPage extends React.Component{
   }
 
   loadHighlights = (page) => {
-    let url = "http://localhost:3000/api/v1/highlights?page="
+    let url = `${apiURL()}?page=`
 
     if (this.state.nextPage){
       url += this.state.nextPage
