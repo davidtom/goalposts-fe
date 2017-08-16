@@ -15,7 +15,7 @@ class Highlight extends React.Component {
     if (this.props.highlight.media_embed)
       return <div dangerouslySetInnerHTML={{__html: this.props.highlight.media_embed}}></div>
     else {
-      return <Image shape='rounded' centered={true} src='./noMediaEmbed.png' />
+      return <Image shape='rounded' centered={true} src='./public/noMediaEmbed.png' />
     }
   }
 
