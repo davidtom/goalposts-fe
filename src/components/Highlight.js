@@ -1,6 +1,7 @@
 import React from "react";
 import HighlightDetails from "./HighlightDetails";
 import { Divider, Image, Header, Button, Icon} from 'semantic-ui-react'
+import noEmbed from "./images/NoMediaEmbed.png"
 
 class Highlight extends React.Component {
   constructor(){
@@ -15,7 +16,7 @@ class Highlight extends React.Component {
     if (this.props.highlight.media_embed)
       return <div dangerouslySetInnerHTML={{__html: this.props.highlight.media_embed}}></div>
     else {
-      return <Image shape='rounded' centered={true} src={require('./images/NoMediaEmbed.png')}/>
+      return <Image shape='rounded' centered={true} src={noEmbed}/>
     }
   }
 
