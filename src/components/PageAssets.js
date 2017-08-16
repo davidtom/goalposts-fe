@@ -29,8 +29,9 @@ const TextLoader = () => (
 const ContentEndAlert = () => (
    <Segment color='red' textAlign='center'>No Additional Content to Load</Segment>
 )
+
 const SiteFooter = () => (
-   <footer className="site-footer">David Tomczyk | Flatiron School Web-060517</footer>
+  <footer>Created by David Tomczyk during Flatiron School Web-060517</footer>
 )
 
 export {APIURL}

@@ -46,7 +46,7 @@ class IndexPage extends React.Component{
   render(){
 
     return(
-      <Container textAlign="center">
+      <Container textAlign="center" className="Site">
         <PageHeader title="View Highlights"/>
         <InfiniteScroll
           pageStart={0}

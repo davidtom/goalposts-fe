@@ -11,7 +11,7 @@ class AboutPage extends React.Component{
 
   render(){
     return(
-      <Container textAlign="center">
+      <Container textAlign="center" className="Site">
         <PageHeader title="About GoalPosts"/>
           <Container text textAlign="left">
             <Segment padded>

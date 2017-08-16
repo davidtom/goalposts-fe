@@ -80,7 +80,7 @@ class SearchPage extends React.Component{
 
   render(){
     return(
-      <Container textAlign="center">
+      <Container textAlign="center" className="Site">
         <PageHeader title="Search Highlights"/>
         <Filter filters={this.state.filters}
                 updateTextFilter={this.updateTextFilter}
