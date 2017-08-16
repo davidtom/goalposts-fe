@@ -4,6 +4,7 @@ import IndexPage from "./components/IndexPage";
 import SearchPage from "./components/SearchPage";
 import AboutPage from "./components/AboutPage";
 import {Route} from "react-router-dom"
+import {SiteFooter} from "./components/PageAssets";
 
 class App extends Component {
 
@@ -15,6 +16,7 @@ class App extends Component {
           < Route exact path="/" component={IndexPage} />
           < Route exact path="/search" component={SearchPage} />
           < Route exact path="/about"  component={AboutPage}/>
+          < SiteFooter />
         </div>
     )
   }

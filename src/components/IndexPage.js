@@ -1,6 +1,6 @@
 import React from "react";
 import HighlightCollection from "./HighlightCollection";
-import {apiURL, PageHeader, textLoader, contentEndAlert} from "./PageAssets";
+import {APIURL, PageHeader, TextLoader, ContentEndAlert} from "./PageAssets";
 import {Container} from 'semantic-ui-react'
 import InfiniteScroll from "react-infinite-scroller"
 
@@ -18,7 +18,7 @@ class IndexPage extends React.Component{
   }
 
   loadHighlights = (page) => {
-    let url = `${apiURL()}?page=`
+    let url = `${APIURL()}?page=`
 
     if (this.state.nextPage){
       url += this.state.nextPage
@@ -52,10 +52,10 @@ class IndexPage extends React.Component{
           pageStart={0}
           loadMore={this.loadHighlights}
           hasMore={this.state.hasMoreItems}
-          loader={ textLoader() }>
+          loader={ TextLoader() }>
             <HighlightCollection highlights = {this.state.highlights} />
         </InfiniteScroll>
-        {!this.state.hasMoreItems && contentEndAlert()}
+        {!this.state.hasMoreItems && ContentEndAlert()}
       </Container>
     )
   }

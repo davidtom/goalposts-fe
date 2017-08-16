@@ -1,7 +1,7 @@
 import React from "react";
 import Filter from "./Filter";
 import HighlightCollection from "./HighlightCollection";
-import {apiURL, PageHeader} from "./PageAssets";
+import {APIURL, PageHeader} from "./PageAssets";
 import { Container, Message } from 'semantic-ui-react';
 import {sortTitleAscending, sortTitleDescending} from './sortFunctions';
 
@@ -33,7 +33,7 @@ class SearchPage extends React.Component{
 
   submitSearch = () => {
 
-    let url = `${apiURL()}/search?title=${this.state.filters.text}`
+    let url = `${APIURL()}/search?title=${this.state.filters.text}`
 
     fetch(url)
     .then(resp => resp.json())
