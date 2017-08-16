@@ -30,7 +30,7 @@ const ContentEndAlert = () => (
    <Segment color='red' textAlign='center'>No Additional Content to Load</Segment>
 )
 const SiteFooter = () => (
-   <footer className="footer">David Tomczyk | Flatiron School Web-060517</footer>
+   <footer className="site-footer">David Tomczyk | Flatiron School Web-060517</footer>
 )
 
 export {APIURL}
