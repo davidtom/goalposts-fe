@@ -2,6 +2,7 @@ import React from "react";
 import HighlightDetails from "./HighlightDetails";
 import { Divider, Image, Header, Button, Icon} from 'semantic-ui-react'
 import noEmbed from "./images/NoMediaEmbed.png"
+import ReactPlayer from 'react-player'
 
 class Highlight extends React.Component {
   constructor(){
@@ -9,15 +10,30 @@ class Highlight extends React.Component {
 
     this.state = {
       displayDetails: false,
+      videoEmbedError: false
     }
   }
 
   embedVideo(){
-    if (this.props.highlight.media_embed)
-      return <div dangerouslySetInnerHTML={{__html: this.props.highlight.media_embed}}></div>
-    else {
+    let video = this.findEmbedVideo()
+    if (!this.state.videoEmbedError){
+      return video
+    } else {
       return <Image shape='rounded' centered={true} src={noEmbed}/>
     }
+  }
+
+  findEmbedVideo(){
+    if (this.props.highlight.media_embed) {
+      return <div dangerouslySetInnerHTML={{__html: this.props.highlight.media_embed}}></div>
+    } else {
+      return <ReactPlayer url={this.props.highlight.url} controls={true} onError={this.rescueVideoEmbed}/>
+    }
+  }
+
+  rescueVideoEmbed = () => {
+    console.log("error!")
+    this.setState({videoEmbedError: true})
   }
 
   toggleDisplayDetails = () => {
@@ -37,7 +53,7 @@ class Highlight extends React.Component {
 
   render(){
     return (
-      <div>
+      <div className="highlight-container">
         <Header size="large">{this.props.highlight.title}</Header>
         {this.embedVideo()}
         <Divider hidden/>

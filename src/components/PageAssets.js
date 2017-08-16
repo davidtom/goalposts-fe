@@ -1,5 +1,5 @@
 import React from "react"
-import { Header, Image, Loader, Segment, Container, Divider } from 'semantic-ui-react'
+import { Header, Image, Loader, Segment } from 'semantic-ui-react'
 
 const APIURL = () => (
   "http://localhost:3000/api/v1/highlights"
