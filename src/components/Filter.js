@@ -24,7 +24,7 @@ class Filter extends React.Component{
       <Segment raised secondary textAlign="center">
         <Form size="large" onSubmit={this.props.submitSearch}>
           <Form.Group>
-            <Form.Input placeholder='Search...' value={this.props.filters.text} onChange={this.changeSearchInput}/>
+            <Form.Input placeholder='Search title...' value={this.props.filters.text} onChange={this.changeSearchInput}/>
             <Button type='submit'>Search</Button>
           </Form.Group>
         </Form>
