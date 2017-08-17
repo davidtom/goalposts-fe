@@ -1,3 +1,6 @@
+// NOTE: these functions are no longer being used, but leaving here in case I
+// need them again at some point
+
 function sortTitleAscending(highlights){
   // sorting is done in place - copy to new array first
   const highlightsCopy = [].concat(highlights)

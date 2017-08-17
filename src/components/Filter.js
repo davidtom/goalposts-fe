@@ -15,7 +15,15 @@ class Filter extends React.Component{
     if (this.props.filters.sortTitle){
       return `sort alphabet ${this.props.filters.sortTitle}ending`
     } else {
-      return "sort"
+      return null
+    }
+  }
+
+  dateSortIcon = () => {
+    if (this.props.filters.sortDate){
+      return `sort numeric ${this.props.filters.sortDate}ending`
+    } else {
+      return null
     }
   }
 
@@ -30,6 +38,7 @@ class Filter extends React.Component{
         </Form>
           <Divider horizontal>sort results by</Divider>
           <Button content='Title' icon={`${this.titleSortIcon()}`} labelPosition='left' onClick={this.props.toggleTitleSort} />
+          <Button content='Date' icon={`${this.dateSortIcon()}`} labelPosition='left' onClick={this.props.toggleDateSort} />
       </Segment>
     )
   }

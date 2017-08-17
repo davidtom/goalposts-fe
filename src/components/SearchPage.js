@@ -3,7 +3,6 @@ import Filter from "./Filter";
 import HighlightCollection from "./HighlightCollection";
 import {APIURL, PageHeader} from "./PageAssets";
 import { Container, Message } from 'semantic-ui-react';
-import {sortTitleAscending, sortTitleDescending} from './sortFunctions';
 
 const sortOptions = [null, "asc", "desc"]
 
@@ -17,7 +16,8 @@ class SearchPage extends React.Component{
       searchComplete: false,
       filters: {
         text: "",
-        sortTitle: null
+        sortTitle: null,
+        sortDate: null
       }
     }
   }
@@ -31,23 +31,33 @@ class SearchPage extends React.Component{
     })
   }
 
-  submitSearch = () => {
-
-    let url = `${APIURL()}/search?title=${this.state.filters.text}`
-
-    fetch(url)
-    .then(resp => resp.json())
-    .then(highlights =>
-      this.setState(
-        {highlights,
-        searchTerm: this.state.filters.text,
-        searchComplete: true}
-      )
-    )
+  searchOptions = () => {
+    if (this.state.filters.sortTitle){
+      return `&sort=title=${this.state.filters.sortTitle}`
+    } else if (this.state.filters.sortDate){
+      return `&sort=posted_utc=${this.state.filters.sortDate}`
+    } else {
+      return ""
+    }
   }
 
-  cycleTitleSort = () => {
-    let index = sortOptions.indexOf(this.state.filters.sortTitle)
+  submitSearch = () => {
+    if (this.state.filters.text.match(/\S/)){ // Only run fetch if a search term is given
+      let url = `${APIURL()}/search?title=${this.state.filters.text}` + this.searchOptions()
+      fetch(url)
+      .then(resp => resp.json())
+      .then(highlights =>
+        this.setState(
+          {highlights,
+          searchTerm: this.state.filters.text,
+          searchComplete: true}
+        )
+      )
+    }
+  }
+
+  cycleSort = (param) => {
+    let index = sortOptions.indexOf(this.state.filters[param])
     return sortOptions[(index+1)%3]
   }
 
@@ -55,9 +65,20 @@ class SearchPage extends React.Component{
     this.setState({
       filters: {
         ...this.state.filters,
-        sortTitle: this.cycleTitleSort(),
+        sortTitle: this.cycleSort("sortTitle"),
+        sortDate: null
       }
-    })
+    }, this.submitSearch)
+  }
+
+  updateDateSort = () => {
+    this.setState({
+      filters: {
+        ...this.state.filters,
+        sortDate: this.cycleSort("sortDate"),
+        sortTitle: null
+      }
+    }, this.submitSearch)
   }
 
   searchResultMessage = () => (
@@ -67,17 +88,6 @@ class SearchPage extends React.Component{
     </Message>
   )
 
-  searchResults = () => {
-    if (this.state.filters.sortTitle === "asc"){
-      return sortTitleAscending(this.state.highlights)
-    } else if (this.state.filters.sortTitle === "desc") {
-      return sortTitleDescending(this.state.highlights)
-    } else {
-      console.log(this.state.highlights)
-      return this.state.highlights
-    }
-  }
-
   render(){
     return(
       <Container textAlign="center" className="Site">
@@ -86,9 +96,10 @@ class SearchPage extends React.Component{
                 updateTextFilter={this.updateTextFilter}
                 submitSearch={this.submitSearch}
                 toggleTitleSort={this.updateTitleSort}
+                toggleDateSort={this.updateDateSort}
                 />
         {!!this.state.searchComplete && this.searchResultMessage()}
-        <HighlightCollection highlights = {this.searchResults()}/>
+        <HighlightCollection highlights = {this.state.highlights}/>
       </Container>
     )
   }
