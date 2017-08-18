@@ -43,7 +43,7 @@ class SearchPage extends React.Component{
 
   submitSearch = () => {
     if (this.state.filters.text.match(/\S/)){ // Only run fetch if a search term is given
-      let url = `${APIURL()}/search?title=${this.state.filters.text}` + this.searchOptions()
+      let url = `${APIURL()}/highlights/search?title=${this.state.filters.text}` + this.searchOptions()
       fetch(url)
       .then(resp => resp.json())
       .then(highlights =>

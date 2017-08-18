@@ -2,8 +2,8 @@ import React from "react"
 import { Header, Image, Loader, Segment } from 'semantic-ui-react'
 
 const APIURL = () => (
-  // "http://localhost:3000/api/v1/highlights"
-  "https://goalposts-api.herokuapp.com/api/v1/highlights"
+  "http://localhost:3000/api/v1"
+  // "https://goalposts-api.herokuapp.com/api/v1"
 )
 
 const SiteLogo = () => (
