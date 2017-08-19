@@ -2,7 +2,7 @@ import {APIURL} from "./PageAssets";
 
 class AuthAdapter {
   static login (loginParams) {
-    return fetch(`${APIURL}/login`, {
+    return fetch(`${APIURL()}/login`, {
       method: "POST",
       headers: this.headers(),
       body: JSON.stringify(loginParams)
@@ -11,19 +11,19 @@ class AuthAdapter {
   }
 
   static currentUser() {
-    return fetch(`${APIURL}/current_user`, {
+    return fetch(`${APIURL()}/auth`, {
       headers: this.headers()
     })
     .then(resp => resp.json())
   }
 
-  headers() {
+  static headers() {
     return {
       'content-type': 'application/json',
       'accept': 'application/json',
-      'Authorization': localStorage.getItem('jwt')
+      'Authorization': "Token token=" + localStorage.getItem('jwt')
     }
   }
 }
 
-export default AuthAdapter
+export {AuthAdapter};

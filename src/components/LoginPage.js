@@ -11,7 +11,7 @@ class LoginPage extends React.Component{
 
     this.state = {
       username: "",
-      password: "" //TODO: these belong in App?? Or does it pass them up to app??
+      password: ""
     }
   }
 
@@ -29,16 +29,25 @@ class LoginPage extends React.Component{
     })
   }
 
+  handleLogIn = () => {
+    let loginParams={
+      username: this.state.username,
+      password: this.state.password
+    }
+    this.props.logIn(loginParams)
+  }
+
   render(){
     return(
       <Container textAlign="center" className="Site">
         <PageHeader title="Admin Log In"/>
           <LoginForm
             username={this.state.username}
-            passworde={this.state.password}
+            password={this.state.password}
             changeUsername={this.changeUsername}
             changePassword={this.changePassword}
-            loggedIn={this.props.authData.isLoggedIn}/>
+            handleLogIn={this.handleLogIn}
+            authData={this.props.authData}/>
       </Container>
     )
   }
