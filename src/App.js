@@ -25,7 +25,6 @@ class App extends Component {
   logIn = (loginParams) => {
     Auth.login(loginParams)
       .then( data => {
-        console.log(data)
         if (!data.error){
           this.setState({
             auth: {
@@ -81,7 +80,7 @@ class App extends Component {
           < Route exact path="/" component={IndexPage} />
           < Route exact path="/search" component={SearchPage} />
           < Route exact path="/about"  component={AboutPage}/>
-          < Route exact path="/login"  render={(props) =>
+          < Route exact path="/admin"  render={(props) =>
             (<AdminPage {...props}
               logIn={this.logIn}
               logOut={this.logOut}
