@@ -16,7 +16,7 @@ class App extends Component {
     this.state = {
       auth: {
         isLoggedIn: false,
-        token: {},
+        user: {},
         error: null
       }
     }
@@ -24,18 +24,18 @@ class App extends Component {
 
   logIn = (loginParams) => {
     Auth.login(loginParams)
-      .then( token => {
-        if (!token.error){
+      .then( user => {
+        if (!user.error){
           this.setState({
             auth: {
               isLoggedIn: true,
-              token:token}
-            }, localStorage.setItem("jwt", token.jwt))
+              user: user}
+            }, localStorage.setItem("jwt", user.jwt))
         } else {
           this.setState(
             {auth: {
               ...this.state.auth,
-              error: token.error
+              error: user.error
             }}
           )
         }
@@ -50,6 +50,24 @@ class App extends Component {
         user: {}
       }
     })
+  }
+
+  componentWillMount(){
+    // Anytime app is mounted (aka page is joined/refreshed), check to see if someone is logged in and set state accordingly
+    if (localStorage.getItem('jwt')){
+      Auth.currentUser()
+      .then(user => {
+        if(!user.error){
+          this.setState({
+            auth: {
+              ...this.state.auth,
+              isLoggedIn: true,
+              user: user
+            }
+          })
+        }
+      })
+    }
   }
 
   render() {
