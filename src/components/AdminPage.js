@@ -4,7 +4,7 @@ import {LoginForm} from "./LoginForm";
 import {Container} from 'semantic-ui-react'
 
 
-class LoginPage extends React.Component{
+class AdminPage extends React.Component{
 
   constructor(){
     super()
@@ -34,23 +34,25 @@ class LoginPage extends React.Component{
       username: this.state.username,
       password: this.state.password
     }
+    this.setState({username: "", password: ""})
     this.props.logIn(loginParams)
   }
 
   render(){
     return(
       <Container textAlign="center" className="Site">
-        <PageHeader title="Admin Log In"/>
+        <PageHeader title="Admin Page"/>
           <LoginForm
             username={this.state.username}
             password={this.state.password}
             changeUsername={this.changeUsername}
             changePassword={this.changePassword}
             handleLogIn={this.handleLogIn}
+            handleLogOut={this.props.logOut}
             authData={this.props.authData}/>
       </Container>
     )
   }
 }
 
-export default LoginPage;
+export default AdminPage;
