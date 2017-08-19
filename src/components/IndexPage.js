@@ -53,7 +53,9 @@ class IndexPage extends React.Component{
           loadMore={this.loadHighlights}
           hasMore={this.state.hasMoreItems}
           loader={ TextLoader() }>
-            <HighlightCollection highlights = {this.state.highlights} />
+            <HighlightCollection
+              highlights = {this.state.highlights}
+              authData = {this.props.authData} />
         </InfiniteScroll>
         {!this.state.hasMoreItems && ContentEndAlert()}
       </Container>

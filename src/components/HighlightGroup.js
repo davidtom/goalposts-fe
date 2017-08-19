@@ -18,7 +18,7 @@ toggleDisplay = () => {
 }
 
 highlightCards(){
-  return this.props.highlights.values.map((highlight, index) => < Highlight highlight={highlight} key={index}/>)
+  return this.props.highlights.values.map((highlight, index) => < Highlight highlight={highlight} key={index} authData={this.props.authData}/>)
 }
 
   render(){

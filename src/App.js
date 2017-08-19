@@ -77,14 +77,16 @@ class App extends Component {
     return (
         <div>
           < Route path="/" component={NavBar} />
-          < Route exact path="/" component={IndexPage} />
+          < Route exact path="/" render={(props) =>
+              (<IndexPage {...props}
+                authData={this.state.auth}/>)} />
           < Route exact path="/search" component={SearchPage} />
           < Route exact path="/about"  component={AboutPage}/>
           < Route exact path="/admin"  render={(props) =>
-            (<AdminPage {...props}
-              logIn={this.logIn}
-              logOut={this.logOut}
-              authData={this.state.auth}/>)} />
+              (<AdminPage {...props}
+                logIn={this.logIn}
+                logOut={this.logOut}
+                authData={this.state.auth}/>)} />
           < SiteFooter />
         </div>
     )

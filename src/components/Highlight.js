@@ -51,6 +51,10 @@ class Highlight extends React.Component {
     return this.state.displayDetails ? "compress" : "expand"
   }
 
+  destroyHighlight = () => {
+    console.log("hello!", this.props.highlight)
+  }
+
   render(){
     return (
       <div className="highlight-container">
@@ -59,7 +63,7 @@ class Highlight extends React.Component {
         <Divider hidden/>
         <Button size="medium" onClick={this.toggleDisplayDetails}> <Icon name={this.detailButtonIcon()} /> {this.detailButtonText()} </Button>
         <Divider hidden/>
-        {this.state.displayDetails && <HighlightDetails highlight={this.props.highlight}/>}
+        {this.state.displayDetails && <HighlightDetails highlight={this.props.highlight} authData={this.props.authData} destroyHighlight={this.destroyHighlight}/>}
         <Divider />
       </div>
     )
