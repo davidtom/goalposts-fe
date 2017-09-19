@@ -18,7 +18,7 @@ class IndexPage extends React.Component{
   }
 
   loadHighlights = (page) => {
-    let url = `${APIURL()}/highlights?page=`
+    let url = `${APIURL}/highlights?page=`
 
     if (this.state.nextPage){
       url += this.state.nextPage

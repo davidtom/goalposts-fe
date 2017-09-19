@@ -2,7 +2,7 @@ import {APIURL} from "./PageAssets";
 
 class AuthAdapter {
   static login (loginParams) {
-    return fetch(`${APIURL()}/login`, {
+    return fetch(`${APIURL}/login`, {
       method: "POST",
       headers: this.headers(),
       body: JSON.stringify(loginParams)
@@ -11,7 +11,7 @@ class AuthAdapter {
   }
 
   static currentUser() {
-    return fetch(`${APIURL()}/auth`, {
+    return fetch(`${APIURL}/auth`, {
       headers: this.headers()
     })
     .then(resp => resp.json())

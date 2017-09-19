@@ -1,10 +1,8 @@
 import React from "react"
 import { Header, Image, Loader, Segment } from 'semantic-ui-react'
 
-const APIURL = () => (
-  "http://localhost:3000/api/v1"
-  // "https://goalposts-api.herokuapp.com/api/v1"
-)
+const APIURL = "http://localhost:3000/api/v1"
+// const APIURL = "https://goalposts-api.herokuapp.com/api/v1"
 
 const SiteLogo = () => (
   <Image shape='rounded' height="70" verticalAlign="middle" spaced src='./soccer-silhouette-image.png' />

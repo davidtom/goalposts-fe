@@ -43,7 +43,7 @@ class SearchPage extends React.Component{
 
   submitSearch = () => {
     if (this.state.filters.text.match(/\S/)){ // Only run fetch if a search term is given
-      let url = `${APIURL()}/search?resource=highlight&title=${this.state.filters.text}` + this.searchOptions()
+      let url = `${APIURL}/search?resource=highlight&title=${this.state.filters.text}` + this.searchOptions()
       fetch(url)
       .then(resp => resp.json())
       .then(highlights =>
@@ -99,7 +99,9 @@ class SearchPage extends React.Component{
                 toggleDateSort={this.updateDateSort}
                 />
         {!!this.state.searchComplete && this.searchResultMessage()}
-        <HighlightCollection highlights = {this.state.highlights}/>
+        <HighlightCollection
+          highlights = {this.state.highlights}
+          authData = {this.props.authData}/>
       </Container>
     )
   }

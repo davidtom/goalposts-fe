@@ -80,7 +80,9 @@ class App extends Component {
           < Route exact path="/" render={(props) =>
               (<IndexPage {...props}
                 authData={this.state.auth}/>)} />
-          < Route exact path="/search" component={SearchPage} />
+              < Route exact path="/search" render={(props) =>
+              (<SearchPage {...props}
+                authData={this.state.auth}/>)} />
           < Route exact path="/about"  component={AboutPage}/>
           < Route exact path="/admin"  render={(props) =>
               (<AdminPage {...props}

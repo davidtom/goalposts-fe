@@ -15,7 +15,7 @@ class Filter extends React.Component{
     if (this.props.filters.sortTitle){
       return `sort alphabet ${this.props.filters.sortTitle}ending`
     } else {
-      return null
+      return 'sort'
     }
   }
 
@@ -23,7 +23,7 @@ class Filter extends React.Component{
     if (this.props.filters.sortDate){
       return `sort numeric ${this.props.filters.sortDate}ending`
     } else {
-      return null
+      return 'sort'
     }
   }
 
