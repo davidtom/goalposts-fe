@@ -1,5 +1,9 @@
 ##TODO:
+
 - Change sorting to be done on server side, not in js!
+
+- Paginate search results
+- Ability to stream/scan posts locally and commit to api database
 - Add final features to search page (date range, sort, filter?)
 - Find way to dynamically set API route (env variable?)
 - Search should ignore special character
