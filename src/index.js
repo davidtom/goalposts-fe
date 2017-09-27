@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import registerServiceWorker from './registerServiceWorker';
+// import registerServiceWorker from './registerServiceWorker';
 import App from './App';
 import {BrowserRouter as Router} from "react-router-dom"
 import 'semantic-ui-css/semantic.min.css';
