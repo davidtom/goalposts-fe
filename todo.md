@@ -8,7 +8,6 @@
 - Find way to dynamically set API route (env variable?)
 - Search should ignore special character
 - Create an analytics page!!
-- Add front and back end authentication (start with admin access to delete highlights)
 
 
 NOTE: sign up/login code (for if and when I need it)
