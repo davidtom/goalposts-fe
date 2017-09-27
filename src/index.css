@@ -22,6 +22,10 @@ body {
   background-color: rgb(8, 60, 142);
 }
 
+a.admin-link{
+  color: red !important;
+}
+
 div.highlight-container div{
   margin: 0 auto;
 }

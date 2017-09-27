@@ -76,7 +76,10 @@ class App extends Component {
   render() {
     return (
         <div>
-          < Route path="/" component={NavBar} />
+          < Route path="/" render = {(props) =>
+            (<NavBar {...props}
+              logOut={this.logOut}
+              authData={this.state.auth}/>)} />
           < Route exact path="/" render={(props) =>
               (<IndexPage {...props}
                 authData={this.state.auth}/>)} />
