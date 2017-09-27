@@ -12,8 +12,7 @@ class Highlight extends React.Component {
 
     this.state = {
       displayDetails: false,
-      videoEmbedError: false,
-      deleted: false
+      videoEmbedError: false
     }
   }
 
@@ -69,9 +68,7 @@ class Highlight extends React.Component {
 
   handleDestroyResponse(json){
     if (json.success){
-      this.setState({deleted: true})
-      // TODO: figure out how I want to handle this delete - MAKE IT AS DRY AS POSSIBLE!
-      // I should probably practice removing something from state/store...
+      this.props.removeHighlightFromState(this.props.highlight)
     } else {
       console.log(json)
     }
@@ -81,7 +78,7 @@ class Highlight extends React.Component {
     return (
       <div className="highlight-container">
         <Header size="large">{this.props.highlight.title}</Header>
-        {!this.state.deleted ? this.embedVideo() : null}
+        {this.embedVideo()}
         <Divider hidden/>
         <Button size="medium" onClick={this.toggleDisplayDetails}> <Icon name={this.detailButtonIcon()} /> {this.detailButtonText()} </Button>
         <Divider hidden/>

@@ -24,7 +24,12 @@ class HighlightCollection extends React.Component{
   }
 
   highlightGroups(){
-    return this.groupHighlightsByDate().map((dateGroup, index) => < HighlightGroup highlights={dateGroup} key={index} authData={this.props.authData}/>)
+    return this.groupHighlightsByDate().map((dateGroup, index) =>
+    < HighlightGroup
+        highlights={dateGroup}
+        key={index}
+        authData={this.props.authData}
+        removeHighlightFromState={this.props.removeHighlightFromState}/>)
   }
 
   render(){

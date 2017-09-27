@@ -56,6 +56,13 @@ class SearchPage extends React.Component{
     }
   }
 
+  removeHighlightFromState = (highlight) => {
+    let filteredHighlights = this.state.highlights.filter(h => h.id !== highlight.id)
+    this.setState({
+      highlights: filteredHighlights
+    })
+  }
+
   cycleSort = (param) => {
     let index = sortOptions.indexOf(this.state.filters[param])
     return sortOptions[(index+1)%3]
@@ -101,7 +108,8 @@ class SearchPage extends React.Component{
         {!!this.state.searchComplete && this.searchResultMessage()}
         <HighlightCollection
           highlights = {this.state.highlights}
-          authData = {this.props.authData}/>
+          authData = {this.props.authData}
+          removeHighlightFromState = {this.removeHighlightFromState}/>
       </Container>
     )
   }

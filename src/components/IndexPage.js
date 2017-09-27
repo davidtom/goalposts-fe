@@ -32,15 +32,19 @@ class IndexPage extends React.Component{
           highlights: [...this.state.highlights, ...highlight_page],
           nextPage: this.state.nextPage + 1
         })
-
-
       } else {
         this.setState({
           hasMoreItems: false
         })
       }
     })
+  }
 
+  removeHighlightFromState = (highlight) => {
+    let filteredHighlights = this.state.highlights.filter(h => h.id !== highlight.id)
+    this.setState({
+      highlights: filteredHighlights
+    })
   }
 
   render(){
@@ -55,7 +59,8 @@ class IndexPage extends React.Component{
           loader={ TextLoader() }>
             <HighlightCollection
               highlights = {this.state.highlights}
-              authData = {this.props.authData} />
+              authData = {this.props.authData}
+              removeHighlightFromState = {this.removeHighlightFromState} />
         </InfiniteScroll>
         {!this.state.hasMoreItems && ContentEndAlert()}
       </Container>
