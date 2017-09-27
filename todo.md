@@ -1,13 +1,13 @@
 ##TODO:
 
-- Change sorting to be done on server side, not in js!
-
 - Paginate search results
-- Ability to stream/scan posts locally and commit to api database
+- Admin features:
+  - Daily email of goals added that day (also show on admin page?)
+  - On admin page: add a highlight from a reddit URL?
 - Add final features to search page (date range, sort, filter?)
 - Find way to dynamically set API route (env variable?)
 - Search should ignore special character
-- Create an analytics page!!
+- Create an analytics page
 
 
 NOTE: sign up/login code (for if and when I need it)
