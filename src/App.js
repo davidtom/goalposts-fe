@@ -54,13 +54,13 @@ class App extends Component {
     })
   }
 
-  componentWillMount(){
+  componentDidMount(){
     // Anytime app is mounted (aka page is joined/refreshed), check to see if
     // someone is logged in and set state accordingly
     if (localStorage.getItem('jwt')){
       Auth.currentUser()
       .then(user => {
-        if(!user.error){
+        if(user && !user.error){
           this.setState({
             auth: {
               ...this.state.auth,

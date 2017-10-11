@@ -14,7 +14,13 @@ class AuthAdapter {
     return fetch(`${APIURL}/auth`, {
       headers: this.headers()
     })
-    .then(resp => resp.json())
+    .then(resp => {
+      if (resp.ok){
+        return resp.json();
+      }
+      // console.log(resp)
+      throw resp;
+      })
   }
 
   static headers() {
