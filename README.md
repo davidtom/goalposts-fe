@@ -1,6 +1,6 @@
 # GoalPosts
 * Quickly and easily watch goals posted to [/r/soccer](http://www.reddit.com/r/soccer)
-* View live site [here](http://www.goal-posts.com/) (please be patient while Heroku wakes up)
+* View live site [here](https://goalposts-fe.herokuapp.com/) (please be patient while Heroku wakes up)
 * Relies on a Rails API back end ([repo](https://github.com/davidtom/goalposts-api))
 * [Video demo](https://www.youtube.com/watch?v=gYBnEtYsUD0&feature=youtu.be)
 
